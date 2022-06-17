@@ -52,7 +52,7 @@ class Car:
         id_ = input('Введите ID изменяемой записи: ')
         obj = requests.get(settings.get_url(), headers=Car.headers).json()
         for i in obj['records']:
-            if id_ in i['id']:
+            if id_ == i['id']:
                 data =  {'fields': {
                     'марка': input('Введите марку: ') or obj['fields']['марка'],
                     'модель': input('Укажите модель: ') or obj['fields']['модель'],
@@ -77,7 +77,7 @@ class Car:
         id_ = input('Введите ID удаляемой записи: ')
         obj = requests.get(settings.get_url(), headers=Car.headers).json()
         for i in obj['records']:
-            if id_ in i['id']:
+            if id_ == i['id']:
                 confirmation = input('Подтвердите действие (Д/Н): ').upper()
                 if confirmation == 'Д' or confirmation == 'ДА':
                     req = requests.delete(settings.get_url()+id_, headers=Car.headers)
